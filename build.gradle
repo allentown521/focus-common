@@ -16,7 +16,7 @@ android {
 }
 
 dependencies {
-    api project(':focus-themecore')
+    api project(':focus-theme')
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
     implementation "com.google.android.material:material:$googleMaterialVersion"
     implementation "androidx.preference:preference-ktx:$preferenceVersion"
