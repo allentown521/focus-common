@@ -10,8 +10,20 @@ repositories {
 //    }
 }
 android {
+    def secrets = new Properties()
+    File secretsFile = rootProject.file('secrets.properties')
+
     defaultConfig {
         namespace "allen.town.focus_common"
+
+        if (secretsFile.exists()) {
+            secrets.load(new FileInputStream(secretsFile))
+            buildConfigField "String", "LEAN_ID", secrets['leanId']
+            buildConfigField "String", "LEAN_KEY", secrets['leanKey']
+            buildConfigField "String", "LEAN_ABROAD_ID", secrets['leanAbroadId']
+            buildConfigField "String", "LEAN_ABROAD_KEY", secrets['leanAbroadKey']
+        }
+
     }
 }
 

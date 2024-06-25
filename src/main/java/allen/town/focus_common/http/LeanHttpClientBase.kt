@@ -1,5 +1,6 @@
 package allen.town.focus_common.http
 
+import allen.town.focus_common.BuildConfig
 import allen.town.focus_common.http.data.AutoParcelAdapterFactory
 import allen.town.focus_common.http.service.LeanService
 import com.google.gson.FieldNamingPolicy
@@ -92,15 +93,15 @@ object LeanHttpClientBase {
 
     private fun getAuthHeader(chain: Interceptor.Chain): Request {
         return chain.request().newBuilder()
-            .addHeader("X-LC-Id", "jStk11nj0ROypDekDg26Qyan-9Nh9j0Va")
-            .addHeader("X-LC-Key", "g0dzoUC76ANtlJkB3su4hsuu")
+            .addHeader("X-LC-Id", BuildConfig.LEAN_ID)
+            .addHeader("X-LC-Key", BuildConfig.LEAN_KEY)
             .build()
     }
 
     private fun getAbroadAuthHeader(chain: Interceptor.Chain): Request {
         return chain.request().newBuilder()
-            .addHeader("X-LC-Id", "jUyNt4GTPi5NUAvvnrtuqoBh-MdYXbMMI")
-            .addHeader("X-LC-Key", "W4AwkEBVKKhU61hVvTujUKi8")
+            .addHeader("X-LC-Id", BuildConfig.LEAN_ABROAD_ID)
+            .addHeader("X-LC-Key", BuildConfig.LEAN_ABROAD_KEY)
             .build()
     }
 }
