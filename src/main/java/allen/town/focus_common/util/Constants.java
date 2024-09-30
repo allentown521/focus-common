@@ -14,7 +14,7 @@ public class Constants {
     public static final String IMAGE_GIF = "image/gif";
     public static final float SUBSAMPLINGSCALEIMAGEVIEW_SCAN = 20.0f;
     public static final String DECODE = "UTF-8";
-    public static final String PRODUCT_EMAIL = "product.allentown@outlook.com";
+    public static final String PRODUCT_EMAIL = "products.focus@gmail.com";
 
     /**
      * 通话结束广播，开在可注册该广播接收相关通话信息
