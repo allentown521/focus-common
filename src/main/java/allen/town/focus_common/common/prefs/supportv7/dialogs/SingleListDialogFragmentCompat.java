@@ -31,6 +31,7 @@ public class SingleListDialogFragmentCompat extends ATEPreferenceDialogFragment 
     private CharSequence[] mItems;
     private int mClickedDialogEntryIndex;
     private String mTitle;
+    private String mContent;
 
     public static SingleListDialogFragmentCompat getInstance(int selectIndex, @Nullable CharSequence[] items, @Nullable final DialogInterface.OnClickListener listener,String title) {
         final SingleListDialogFragmentCompat fragment = new SingleListDialogFragmentCompat();
@@ -39,6 +40,17 @@ public class SingleListDialogFragmentCompat extends ATEPreferenceDialogFragment 
         fragment.mItems = items;
         fragment.mClickedDialogEntryIndex = selectIndex;
         fragment.mTitle=title;
+        return fragment;
+    }
+
+    public static SingleListDialogFragmentCompat getInstance(int selectIndex, @Nullable CharSequence[] items, @Nullable final DialogInterface.OnClickListener listener, String title, String content) {
+        final SingleListDialogFragmentCompat fragment = new SingleListDialogFragmentCompat();
+        final Bundle b = new Bundle(1);
+        fragment.mListener = listener;
+        fragment.mItems = items;
+        fragment.mClickedDialogEntryIndex = selectIndex;
+        fragment.mTitle = title;
+        fragment.mContent = content;
         return fragment;
     }
 
@@ -70,6 +82,11 @@ public class SingleListDialogFragmentCompat extends ATEPreferenceDialogFragment 
     @Override
     public String getTitleStr() {
         return mTitle;
+    }
+
+    @Override
+    public String getContentStr() {
+        return mContent;
     }
 
     @Override

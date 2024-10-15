@@ -22,7 +22,6 @@ import android.util.Log
 import androidx.fragment.app.DialogFragment
 import androidx.preference.DialogPreference
 import androidx.preference.DialogPreference.TargetFragment
-import allen.town.focus_common.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 /**
@@ -50,7 +49,7 @@ open class ATEPreferenceDialogFragment : DialogFragment(), DialogInterface.OnCli
         )
             .setTitle(if (TextUtils.isEmpty(getTitleStr()))preference?.dialogTitle else getTitleStr())
             .setIcon(preference?.dialogIcon)
-            .setMessage(preference?.dialogMessage)
+            .setMessage(preference?.dialogMessage ?: getContentStr())
             .setPositiveButton(preference?.positiveButtonText, this)
             .setNegativeButton(preference?.negativeButtonText, this)
         onPrepareDialogBuilder(builder)
@@ -67,6 +66,10 @@ open class ATEPreferenceDialogFragment : DialogFragment(), DialogInterface.OnCli
     }
 
     protected open fun getTitleStr():String?{
+        return null
+    }
+
+    protected open fun getContentStr(): String? {
         return null
     }
 

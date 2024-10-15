@@ -143,6 +143,7 @@ Up to 2 times per day, rewards will be added up after each viewing</string>
     <string name="remove_ads_suggested">Suggested 🙏 </string>
     <string name="remove_ads_generous">Generous 👑</string>
     <string name="remove_ads_tip">Remove ads by the following contributions</string>
+    <string name="remove_ads_summary">Remove ads is a one-time purchase, after payment all ads in the app will be removed.</string>
     <string name="pref_custom_launcher_title">Custom Launcher</string>
     <string name="pref_custom_launcher_summary">Not all mobile phone support this feature, please test by yourself</string>
     <string name="memory_manage">App Memory</string>

@@ -14,8 +14,9 @@
  */
 package allen.town.focus_common.extensions
 
-import allen.town.focus_common.util.RetroUtil
 import allen.town.focus_common.util.BasePreferenceUtil
+import allen.town.focus_common.util.RetroUtil
+import allen.town.focus_common.util.Timber
 import android.R
 import android.animation.Animator
 import android.animation.ObjectAnimator
@@ -36,7 +37,18 @@ import androidx.annotation.Px
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import androidx.core.content.getSystemService
-import androidx.core.view.*
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.drawToBitmap
+import androidx.core.view.isGone
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
+import androidx.core.view.marginBottom
+import androidx.core.view.marginLeft
+import androidx.core.view.marginRight
+import androidx.core.view.marginTop
+import androidx.core.view.updateMargins
+import androidx.core.view.updatePadding
 import code.name.monkey.appthemehelper.ThemeStore
 import code.name.monkey.appthemehelper.util.TintHelper
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -44,6 +56,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigationrail.NavigationRailView
 import dev.chrisbanes.insetter.applyInsetter
+
 const val ANIM_DURATION = 300L
 @Suppress("UNCHECKED_CAST")
 fun <T : View> ViewGroup.inflate(@LayoutRes layout: Int): T {
@@ -94,6 +107,11 @@ fun NavigationBarView.show() {
     if (this is NavigationRailView) return
     if (isVisible) return
 
+    if (width <= 0 || height <= 0) {
+        Timber.w("width and height must be > 0")
+        return
+    }
+
     val parent = parent as ViewGroup
     // View needs to be laid out to create a snapshot & know position to animate. If view isn't
     // laid out yet, need to do this manually.
@@ -141,6 +159,11 @@ fun NavigationBarView.hide() {
 
     if (!isLaidOut) {
         isGone = true
+        return
+    }
+
+    if (width <= 0 || height <= 0) {
+        Timber.w("width and height must be > 0")
         return
     }
 
