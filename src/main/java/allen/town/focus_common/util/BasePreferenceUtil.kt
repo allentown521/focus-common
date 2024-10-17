@@ -1,26 +1,31 @@
 package allen.town.focus_common.util
 
+import allen.town.focus_common.extensions.getStringOrDefault
 import allen.town.focus_common.model.CategoryInfo
 import android.content.Context
 import android.content.SharedPreferences
 import android.text.format.DateUtils
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
+import code.name.monkey.appthemehelper.ThemeStoreHack
 import code.name.monkey.appthemehelper.constants.ThemeConstants.ADMOB_BANNER_KEY
 import code.name.monkey.appthemehelper.constants.ThemeConstants.ADMOB_INTERSTITIAL_KEY
 import code.name.monkey.appthemehelper.constants.ThemeConstants.ADMOB_NATIVE_KEY
 import code.name.monkey.appthemehelper.constants.ThemeConstants.ADMOB_OPEN_KEY
 import code.name.monkey.appthemehelper.constants.ThemeConstants.ADMOB_REWARD_KEY
+import code.name.monkey.appthemehelper.constants.ThemeConstants.APP_OPEN_COUNT
 import code.name.monkey.appthemehelper.constants.ThemeConstants.BLACK_THEME
 import code.name.monkey.appthemehelper.constants.ThemeConstants.CIRCLE_PLAY_BUTTON
 import code.name.monkey.appthemehelper.constants.ThemeConstants.COLORED_APP_SHORTCUTS
 import code.name.monkey.appthemehelper.constants.ThemeConstants.DESATURATED_COLOR
+import code.name.monkey.appthemehelper.constants.ThemeConstants.DISABLE_FIREBASE
 import code.name.monkey.appthemehelper.constants.ThemeConstants.FIRST_INSTALL_AND_LAUNCH
 import code.name.monkey.appthemehelper.constants.ThemeConstants.FIRST_TO_VIEW_VIDEO_AD
 import code.name.monkey.appthemehelper.constants.ThemeConstants.GENERAL_THEME
 import code.name.monkey.appthemehelper.constants.ThemeConstants.INTERSTITIAL_AD_TIME
 import code.name.monkey.appthemehelper.constants.ThemeConstants.KEEP_SCREEN_ON
 import code.name.monkey.appthemehelper.constants.ThemeConstants.LANGUAGE_NAME
+import code.name.monkey.appthemehelper.constants.ThemeConstants.LAST_ADMOB_CHECK
 import code.name.monkey.appthemehelper.constants.ThemeConstants.LIBRARY_CATEGORIES
 import code.name.monkey.appthemehelper.constants.ThemeConstants.MATERIAL_YOU
 import code.name.monkey.appthemehelper.constants.ThemeConstants.REWARD_PRO_VALID_TIME
@@ -35,11 +40,6 @@ import code.name.monkey.appthemehelper.constants.ThemeConstants.WEBDEV_SERVER_PA
 import code.name.monkey.appthemehelper.constants.ThemeConstants.WEBDEV_SERVER_URL
 import code.name.monkey.appthemehelper.constants.ThemeConstants.WEBDEV_SERVER_USER
 import code.name.monkey.appthemehelper.util.VersionUtils
-import allen.town.focus_common.extensions.getStringOrDefault
-import code.name.monkey.appthemehelper.ThemeStore
-import code.name.monkey.appthemehelper.ThemeStoreHack
-import code.name.monkey.appthemehelper.constants.ThemeConstants.DISABLE_FIREBASE
-import code.name.monkey.appthemehelper.constants.ThemeConstants.LAST_ADMOB_CHECK
 import code.name.monkey.retromusic.util.theme.ThemeMode
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
@@ -114,6 +114,16 @@ object BasePreferenceUtil {
         )
         set(value) = sharedPreferences!!.edit {
             putBoolean(WALLPAPER_ACCENT, value)
+        }
+
+    @JvmStatic
+    var appOpenCount
+        get() = sharedPreferences!!.getInt(
+            APP_OPEN_COUNT,
+            0
+        )
+        set(value) = sharedPreferences!!.edit {
+            putInt(APP_OPEN_COUNT, value)
         }
 
     var isColoredAppShortcuts
