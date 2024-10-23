@@ -19,7 +19,6 @@ open class BaseApplication: MultiDexApplication() {
     open val wallpaperAccentManager = WallpaperAccentManager(this)
     var isAlipay = false
     var isDroid = false
-    open var needOpenPurchaseWhenAppOpen = false
 
     //打开开关后调试支付宝支付,上线前一定要置为false
     private val debugAlipay = false
@@ -178,7 +177,6 @@ open class BaseApplication: MultiDexApplication() {
         setAlipay()
         setDroid()
         setArouter()
-        needOpenPurchaseWhenAppOpen()
         //--------------------------------------------------
 
         setLog()
@@ -193,13 +191,13 @@ open class BaseApplication: MultiDexApplication() {
 
     }
 
-    private fun needOpenPurchaseWhenAppOpen() {
+    open fun needOpenPurchaseWhenAppOpen(): Boolean {
         //when app opened secondly, open purchase page
         val count = BasePreferenceUtil.appOpenCount + 1
         if (count < 3) {
             BasePreferenceUtil.appOpenCount = count
         }
-        needOpenPurchaseWhenAppOpen = count == 2
+        return count == 2
     }
 
     open fun needInitDefaultWallpaperAccent(): Boolean {
