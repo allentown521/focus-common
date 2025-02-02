@@ -1,8 +1,13 @@
 package allen.town.focus_common.ad
 
+import allen.town.core.service.PayService
 import allen.town.focus_common.util.Timber
 import android.app.Activity
-import com.google.android.ump.*
+import com.google.android.ump.ConsentDebugSettings
+import com.google.android.ump.ConsentInformation
+import com.google.android.ump.ConsentRequestParameters
+import com.google.android.ump.UserMessagingPlatform
+import com.wyjson.router.GoRouter
 import java.util.Random
 
 /**
@@ -17,6 +22,11 @@ class ConsentRequestManager {
         Timber.d("code $code")
         if(code != 1){
             Timber.d("random failed")
+            return
+        }
+
+        if (GoRouter.getInstance().getService(PayService::class.java)!!.isAdBlocker()) {
+            Timber.d("not show consent form for ad blocker")
             return
         }
         //每个应用的id不一样控制台看日志搜索test
